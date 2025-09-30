@@ -17,7 +17,14 @@
       "Bash(mv:*)",
       "Bash(cp:*)",
       "Bash(cat:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "mcp__slack__slack_get_channel_history",
+      "mcp__jira__searchJiraIssuesUsingJql",
+      "mcp__notion__notion-fetch",
+      "mcp__atlassian__getConfluencePage",
+      "mcp__slack__slack_list_channels",
+      "mcp__jira__getJiraIssue",
+      "mcp__jira__search"
     ],
     "additionalDirectories": [
       "backend-main",
