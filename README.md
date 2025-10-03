@@ -23,41 +23,58 @@ The tool monitors three repositories:
 - `web-focal-os/` - Web frontend for Focal OS
 
 ### 2. MCP Server Configuration
-Five MCP (Model Context Protocol) servers must be configured and authenticated:
 
-#### Jira (via Atlassian MCP)
+Five MCP (Model Context Protocol) servers must be configured and authenticated.
+
+#### General Authentication Process
+
+For most MCP servers (Atlassian, Notion), follow this process:
+
+1. **Run Claude Code:**
+   ```bash
+   claude
+   ```
+
+2. **Open MCP menu:**
+   ```
+   /mcp
+   ```
+
+3. **Follow the OAuth login prompts** for each server that requires authentication
+
+#### Atlassian (Jira + Confluence)
+
 ```bash
-# Already configured in .mcp.json
 claude mcp auth atlassian
 ```
 
-#### Confluence (via Atlassian MCP)
+Then run `claude` and use `/mcp` to complete the OAuth login. Authentication covers both Jira and Confluence.
+
+#### Notion
+
 ```bash
-# Same server as Jira - authentication covers both
-claude mcp auth atlassian
+claude mcp auth notion
 ```
+
+Then run `claude` and use `/mcp` to follow the OAuth login prompt.
 
 #### Slack
+
+**Use the make command for easy setup:**
+
 ```bash
-# Already configured in .mcp.json
-# Set environment variable with your Slack bot token:
-export SLACK_BOT_TOKEN="xoxb-your-bot-token"
+make add-mcp-slack SLACK_BOT_TOKEN=xoxb-your-bot-token
 ```
 
 To create a Slack bot:
 1. Go to https://api.slack.com/apps
 2. Create a new app
-3. Add bot token scopes: `channels:read`, `channels:history`, `chat:write`
+3. Add bot token scopes: `channels:read`, `channels:history`, `chat:write`, `reactions:write`, `users:read`
 4. Install app to workspace
-5. Copy the Bot User OAuth Token
-
-#### Notion
-```bash
-# Already configured in .mcp.json
-claude mcp auth notion
-```
+5. Copy the Bot User OAuth Token (starts with `xoxb-`)
 
 #### Code Access
+
 Code access is configured via `.claude/settings.json` with `additionalDirectories` pointing to the three repositories.
 
 ### 3. Verify Setup

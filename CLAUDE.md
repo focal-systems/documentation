@@ -113,6 +113,17 @@ Search Jira for bug reports, Slack for related discussions, and repositories for
 
 Generated documentation should be placed in `output/` directory.
 
+## Development Guidelines
+
+### Cross-Platform Compatibility
+
+All scripts must be compatible with both macOS and Linux (Ubuntu):
+
+- **Bash scripts**: Must work with bash 3.2+ (default on macOS) and bash 4.0+ (Linux)
+- Avoid bash 4+ features like associative arrays (`declare -A`)
+- Test scripts on both platforms before committing
+- Use POSIX-compliant commands when possible
+
 ## Important Notes
 
 - Repository sync pulls from `develop` branch by default

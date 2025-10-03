@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# Repository configurations
-declare -A REPOS=(
-    ["backend-main"]="git@github.com:focal-systems/backend-main.git"
-    ["backend-legacy"]="git@github.com:focal-systems/backend-legacy.git"
-    ["web-focal-os"]="git@github.com:focal-systems/web-focal-os.git"
+# Repository configurations (compatible with bash 3.2+)
+REPO_NAMES=("backend-main" "backend-legacy" "web-focal-os")
+REPO_URLS=(
+    "git@github.com:focal-systems/backend-main.git"
+    "git@github.com:focal-systems/backend-legacy.git"
+    "git@github.com:focal-systems/web-focal-os.git"
 )
 
 # Process each repository
-for REPO_NAME in "${!REPOS[@]}"; do
-    REPO_URL="${REPOS[$REPO_NAME]}"
+for i in "${!REPO_NAMES[@]}"; do
+    REPO_NAME="${REPO_NAMES[$i]}"
+    REPO_URL="${REPO_URLS[$i]}"
 
     echo "Processing $REPO_NAME..."
 

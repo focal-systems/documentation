@@ -12,14 +12,15 @@
       "command": "npx",
       "args": [
         "@modelcontextprotocol/server-slack"
-      ],
-      "env": {
-        "SLACK_BOT_TOKEN": "test"
-      }
+      ]
     },
     "notion": {
       "type": "http",
       "url": "https://mcp.notion.com/mcp"
+    },
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
     }
   }
 }
