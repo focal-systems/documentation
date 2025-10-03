@@ -26,7 +26,28 @@ The tool monitors three repositories:
 
 Five MCP (Model Context Protocol) servers must be configured and authenticated.
 
-#### General Authentication Process
+#### Quick Setup (Recommended)
+
+MCP servers are already configured in `.mcp.json`. To set them up:
+
+```bash
+# Optional: Configure Slack if you have a bot token
+make mcp-auth SLACK_BOT_TOKEN=xoxb-your-bot-token
+
+# Or without Slack
+make mcp-auth
+```
+
+Then complete the OAuth flow:
+1. Run `claude`
+2. Type `/mcp`
+3. Follow the OAuth login prompts for Atlassian, Notion, and Figma
+
+#### Manual Setup (Alternative)
+
+If you prefer to set up servers individually:
+
+##### General Authentication Process
 
 For most MCP servers (Atlassian, Notion), follow this process:
 
@@ -42,23 +63,19 @@ For most MCP servers (Atlassian, Notion), follow this process:
 
 3. **Follow the OAuth login prompts** for each server that requires authentication
 
-#### Atlassian (Jira + Confluence)
+##### Atlassian (Jira + Confluence)
 
-```bash
-claude mcp auth atlassian
-```
+Already configured in `.mcp.json`. Run `claude` and use `/mcp` to complete OAuth authentication. This covers both Jira and Confluence.
 
-Then run `claude` and use `/mcp` to complete the OAuth login. Authentication covers both Jira and Confluence.
+##### Notion
 
-#### Notion
+Already configured in `.mcp.json`. Run `claude` and use `/mcp` to complete OAuth authentication.
 
-```bash
-claude mcp auth notion
-```
+##### Figma
 
-Then run `claude` and use `/mcp` to follow the OAuth login prompt.
+Already configured in `.mcp.json`. Run `claude` and use `/mcp` to complete OAuth authentication.
 
-#### Slack
+##### Slack
 
 **Use the make command for easy setup:**
 
@@ -73,7 +90,7 @@ To create a Slack bot:
 4. Install app to workspace
 5. Copy the Bot User OAuth Token (starts with `xoxb-`)
 
-#### Code Access
+##### Code Access
 
 Code access is configured via `.claude/settings.json` with `additionalDirectories` pointing to the three repositories.
 
@@ -112,8 +129,10 @@ Then interact with the specialized agents defined in the `agents/` directory to:
 
 ```bash
 make help              # Show all available commands
+make mcp-auth          # Authenticate all MCP servers (optional: SLACK_BOT_TOKEN=...)
 make sync              # Sync repositories to latest develop
 make mcp-status        # Check MCP server health
+make add-mcp-slack     # Configure Slack MCP (requires SLACK_BOT_TOKEN)
 ```
 
 ## Agent System
