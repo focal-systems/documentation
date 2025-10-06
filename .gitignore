@@ -3,3 +3,5 @@ backend-main/
 backend-legacy/
 web-focal-os/
 /.idea/*
+.DS_Store
+output
